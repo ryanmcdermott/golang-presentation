@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Golang talk</title>
+
+		<meta name="description" content="Golang From a Beginner's Perspective.">
+		<meta name="author" content="Ryan McDermott">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+			<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>A Beginner Has a Go</h1>
+					<h3>A novice's perspective of Golang</h3>
+					<p>
+						<small>Created by <a href="http://ryansworks.com">Ryan McDermott</a> / <a href="http://twitter.com/ryansworks">@ryansworks</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h2>What I Don't Want to Talk About</h2>
+					<p>
+						<ul>
+							<li class="fragment">Read-Write Mutexes</li>
+							<li class="fragment">CPU scheduling</li>
+							<li class="fragment">Assembly code analysis and Golang object file dissection</li>
+							<li class="fragment">Cross compilation</li>
+							<li class="fragment">Race condition prevention of Go runtime</li>
+						</ul>
+					</p>
+					<p>
+						
+					</p>
+				</section>
+
+
+				<section>
+					<h2>Because I Don't Know Any of That Stuff</h2>
+					<p>
+						<img src="img/dontknow.png"/>
+					</p>
+				</section>
+
+				<section>
+					<h2>What I Do Want To Talk About</h2>
+					<p>
+						<ul>
+							<li class="fragment">Who I Am</li>
+							<li class="fragment">Why I find Go very compelling for certain projects</li>
+							<li class="fragment">What I love about the simplicity of Go</li>
+							<li class="fragment">What I don't love about its simplicity</li>
+							<li class="fragment">Where I want to Go with it</li>
+						</ul>
+					</p>
+				</section>
+
+				<section>
+					<h2>My Background</h2>
+					<p>
+						Full stack web programmer.
+					</p>
+
+					<p>
+						Pythonista <br/>
+						JavaScript kiddie <br/>
+						Very timid C/C++ developer
+					</p>
+						
+					<p>
+						<img src="img/fullstack.jpg"/>
+					</p>
+				</section>
+
+				<section>
+					<h2>More Background</h2>
+					<p>
+						Musician and music enthusiast.
+					</p>
+
+					<p>
+						<img src="img/music.jpg"/>
+					</p>
+				</section>
+
+				<section>
+					<h2>Musical Project</h2>
+					<p>
+						I discovered new artists and artists' connections by clicking through related artists. Sounded like something that could be automated.
+					</p>
+
+					<img src="img/spotify.png" style="background: none; border: none; box-shadow: none;"/>
+				</section>
+
+
+				<section>
+					<section>
+						<h2>Like The Six Degrees of Kevin Bacon</h2>
+						<img src="img/bacon.jpg"/>
+					</section>
+					<section>
+						<p>If you're not a fan of bacon, here's Hamm.</p>
+						<img src="img/hamm.jpg"/>
+					</section>
+				</section>
+
+
+				<section>
+					<h2>A To Go Order</h2>
+					<p>
+						Golang seemed like a good solution.
+					</p>
+
+					<p>
+						<ul>
+							<li class="fragment">Type-safe</li>
+							<li class="fragment">Very lightly object oriented which provides nice abstractions. Interfaces, structs, and receivers</li>
+							<li class="fragment">Concurrency primitives make it easy to distribute API requests</li>
+							<li class="fragment">Great for building a CLI tool. See <a href="https://github.com/codegangsta/cli">https://github.com/codegangsta/cli</a></li>
+							<li class="fragment">Statically linked binaries and cross compilation for shipping easily</li>
+						</ul>
+					</p>
+				</section>
+
+
+				<section>
+					<p>
+						It's also pretty hip and all over Hacker News, so that's pretty cool.
+					</p>
+
+					<img src="img/hipster.jpg"/>
+				</section>
+
+
+				<!-- Example of nested vertical slides -->
+				<section>
+					<section>
+						<h2>Spotifind</h2>
+						<p>
+							Spotifind is an app that connects artists by a chain of related artists using Spotify's API and Goroutines to "thread" requests.
+						</p>
+						<p>
+							<a href="https://github.com/ryanmcdermott/spotifind">https://github.com/ryanmcdermott/spotifind</a>
+						</p>
+					</section>
+					<section>
+						<img src="img/armstrong-backstreet.png" style="background: none; border: none; box-shadow: none;"/>
+					</section>
+					<section>
+						<img src="img/beatles-slipknot.png" style="background: none; border: none; box-shadow: none;"/>
+					</section>
+					<section>
+						<img src="img/garland-sister.png" style="background: none; border: none; box-shadow: none;"/>
+					</section>
+					<section>
+						<img src="img/stones-nickelback.png" style="background: none; border: none; box-shadow: none;"/>
+					</section>
+					<section>
+						<img src="img/zeppelin-swift.png" style="background: none; border: none; box-shadow: none;"/>
+					</section>
+				</section>
+
+				<section>
+					<h2>Concurreny Patterns</h2>
+					<p>
+						Spotifind uses a worker/work queue concurrency pattern to distribute API requests to Spotify and speed up performance.
+					</p>
+				</section>
+
+				<section>
+					<ol>
+						<li>
+							<strong>Work Queue</strong> -- a buffered channel, that collects work requests.
+						</li>
+						<li>
+							<strong>Dispatcher</strong> -- pulls work requests off of the work queue, and distributes each to an available worker.
+						</li>
+						<li>
+							<strong>Worker Queue</strong> -- a buffered channel of channels. The channels that are received into each channel, are what the workers use to receive their work requests.
+						</li>
+						<li>
+							<strong>Workers</strong> -- what actually does the work on each work request. In the case of Spotifind, this sends an API request fo find each new related artist and see if we have a match to our destination artist.
+						</li>
+					</ol>
+				</section>
+
+				<section>
+					<h2>Worker Structs</h2>
+					<pre><code data-trim contenteditable>
+// Simple structure to hold a reference to an artist.
+type WorkRequest struct {
+	Artist  *Artist
+	Visited *VisitedArtists
+}
+
+// A buffered channel that we can send work requests on.
+var WorkQueue = make(chan WorkRequest, 100)
+
+var WorkerQueue chan chan WorkRequest
+
+type Worker struct {
+	ID          int
+	Work        chan WorkRequest
+	WorkerQueue chan chan WorkRequest
+}
+					</code></pre>
+				</section>
+
+
+				<section>
+					<h2>Dispatcher</h2>
+					<pre><code data-trim contenteditable style="max-height: 500px;">
+func StartDispatcher(nworkers int) {
+	WorkerQueue = make(chan chan WorkRequest, nworkers)
+
+	for i := 0; i < nworkers; i++ {
+		fmt.Println("Starting worker", i+1)
+		worker := NewWorker(i+1, WorkerQueue)
+		worker.Start()
+	}
+
+	go func() {
+		for {
+			select {
+			case work := <-WorkQueue:
+				go func() {
+					worker := <-WorkerQueue
+					worker <- work
+				}()
+			}
+		}
+	}()
+}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Worker Object</h2>
+					<pre><code data-trim contenteditable>
+func NewWorker(id int, workerQueue chan chan WorkRequest) Worker {
+	worker := Worker{
+		ID:          id,
+		Work:        make(chan WorkRequest),
+		WorkerQueue: workerQueue,
+	}
+
+	return worker
+}
+					</code></pre>
+				</section>
+
+
+				<section>
+					<h2>Worker Goroutine</h2>
+					<pre><code data-trim contenteditable>
+var GlobalQuitChan = make(chan Artist)
+
+func (w Worker) Start() {
+	go func() {
+		for {
+			w.WorkerQueue <- w.Work
+			select {
+			case work := <-w.Work:
+				fmt.Printf("worker %d: %s\n", w.ID, work.Artist.Name)
+				FindRelatedArtists(work.Artist, work.Visited)
+
+			case <-GlobalQuitChan:
+				fmt.Printf("worker %d stopping\n", w.ID)
+				return
+			}
+		}
+	}()
+}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Remaining Structures</h2>
+					<pre><code data-trim contenteditable>
+type Artist struct {
+	Name   string
+	Id     string
+	Parent *Artist
+}
+
+type Artists struct {
+	Href  string
+	Items []Artist
+}
+
+type VisitedArtists struct {
+	Artists []Artist
+}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Once We Find an Artist</h2>
+					<p>Build a tree of related artists, back to the origin artist from the destination.</p>
+					<pre><code data-trim contenteditable>
+func WalkRelatedArtists(artist *Artist, tree []string) []string {
+	tree = append(tree, artist.Name)
+	if artist.Parent != nil {
+		tree = WalkRelatedArtists(artist.Parent, tree)
+	}
+
+	return tree
+}
+				</code></pre>
+				</section>
+
+				<section>
+					<h2>We've found Kevin Bacon</h2>
+					<p>
+						<i>And yes, apparently Kevin Bacon is actually in Spotify!</i>
+					</p>
+					<p>
+						<img src="img/kevin-bacon-spotify.png"/>
+					</p>
+				</section>
+
+
+				<section>
+					<h2>That's Enough!</h2>
+					<p>We're tired of the bacon jokes, how did I feel about Golang?</p>
+				</section>
+
+
+				<section>
+					<h2>Trying to Go Steady</h2>
+					<p>
+						Getting acquainted with Go required a bit of adjustment after having used C/C++. Declaring types to the right of variables names can be a bit mind altering at the beginning.
+					</p>
+
+					<pre><code data-trim contenteditable>
+var jobs int
+var hopes string
+var cash [10]int
+var treasuremap map[string]int
+type StartupProcess struct {
+    startup bool
+    cashIn bool
+    sellOut bool
+    broDown bool
+}
+					</code></pre>
+				</section>
+
+
+				<section>
+					<p>
+						Almost as chaotic as learning to drive on the other side of the road, like Swedes had to start doing in 1967.
+					</p>
+
+					<p>
+						<img src="img/driving-side.jpg"/>
+					</p>
+				</section>
+
+
+				<section>
+					<p>
+						But the Swedes are happy now.
+					</p>
+
+					<p>
+						<img src="img/happy-swede.jpg"/>
+					</p>
+				</section>
+
+
+				<section>
+					<h2>Dependencies Took Time to Understand</h2>
+					<p>
+						<i>go get</i> looks great from a semantic point of view, but just shoving everything into the GOPATH feels a little weird when you come from having the luxury of pip/virtualenv, npm, gem/rvm, etc. 
+					</p>
+				</section>
+
+
+				<section>
+					<h2>Makefile saves the day</h2>
+					<p>It doesn't handle versioning problem well, but it does silo off dependencies to the package level</p>
+					<pre><code data-trim contenteditable>
+GOPATH := ${PWD}/vendor:${GOPATH}
+export GOPATH
+
+vendor_get: vendor_clean
+	GOPATH=${PWD}/vendor go get -d -u -v \
+	github.com/rapito/go-spotify/spotify \
+	github.com/codegangsta/cli
+
+vendor_update: vendor_get
+	rm -rf `find ./vendor/src -type d -name .git` \
+	&amp;&amp; rm -rf `find ./vendor/src -type d -name .hg` \
+	&amp;&amp; rm -rf `find ./vendor/src -type d -name .bzr` \
+	&amp;&amp; rm -rf `find ./vendor/src -type d -name .svn`
+
+				</code></pre>
+				</section>
+
+
+				<section>
+					<h2>More stumbling blocks...</h2>
+					<p>I expected some similar functionality between slices and maps, but that's not the case. </p>
+
+					<p>Delete from map</p>
+					<pre><code>
+delete(m, k)  // remove element m[k] from map m
+					</code></pre>
+
+					<p>Delete from slice</p>
+					<pre><code>
+a = append(a[:i], a[i+1:]...)
+					</code></pre>
+				</section>
+
+
+				<section>
+					<h2>Strange Package Stuff</h2>
+					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+						&ldquo;By convention, packages are given lower case, single-word names; there should be no need for underscores or mixedCaps.&rdquo;
+					</blockquote>
+					<br/>
+					<p>But why?</p>
+				</section>
+
+				<section>
+					<p>Only cats like strange packages</p>
+					<img src="img/packages.png"/>
+				</section>
+
+
+				<section>
+					<h2>Erring on the side of err</h2>
+					<pre><code>
+if err != nil {
+	doSomething()
+}
+					</code></pre>
+					<p>This kind of code is everywhere. Because of Golang's lack of exceptions it seems to crop up a lot. Defer, panic, and recover provide some ways around it but maybe Golang needs exceptions, then again I could be wrong!</p>
+				</section>
+
+
+				<section>
+					<h2>Stricter than a drill sergeant</h2>
+					<p>Coming from GCC, you are used to -Wall, but probably not of completely having the compiler halt on unused variables!</p>
+					<img src="img/unused_variables.png"/>
+				</section>
+
+				<section>
+					<p>
+						All of this can come across as pedantic, if you're like me and spend all your days in a dynamic language.
+					</p>
+
+					<p>
+						Sometimes it's nice to play fast and loose, but in the end Go's strictness saves you from yourself.
+					</p>
+				</section>
+
+
+				<section>
+					<h2>No style concerns</h2>
+					<p>
+						Out of this strictness, does come a lot of goodness. One of those things that I love is a formatter being built in with the language: <i>go fmt</i>. No more of these kinds of interactions:
+					</p>
+					<img src="img/code_quality.png"/>
+				</section>
+
+
+				<section>
+					<h2>No classes, no worries</h2>
+					<p>
+						Object composition
+					</p>
+				</section>
+
+				<section>
+					<h2>Golang is the Future</h2>
+					<p>
+						Go is the future of systems software. Where bigger beasts roamed, Golang takes over by being nimble, powerful, and fun. The prior solutions were too big and massive, and now feel almost inappropriate in comparison to Go. Just look at a keyword comparison between C++ and Go →
+					</p>
+				</section>
+
+
+				<section>
+					<p>
+						C++ <br/>
+						<img src="img/cplusplus_keywords.png" style="display: inline;"/> <br/>
+
+						Go <br/>
+						<img src="img/go_keywords.png" style="display: inline;"/>
+					</p>
+				</section>
+
+
+				<section>
+					<h2>THE END</h2>
+					<p>
+						<i><strong>Any questions?</strong></i>
+					</p>
+					<p>
+						<img src="img/confused-dog.jpg"/>
+					</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
